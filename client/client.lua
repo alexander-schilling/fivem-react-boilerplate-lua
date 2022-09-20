@@ -1,3 +1,5 @@
+UI_LOADED = false
+
 local function toggleNuiFrame(shouldShow)
   SetNuiFocus(shouldShow, shouldShow)
   SendReactMessage('setVisible', shouldShow)
@@ -22,4 +24,20 @@ RegisterNUICallback('getClientData', function(data, cb)
 
   local retData <const> = { x = curCoords.x, y = curCoords.y, z = curCoords.z }
   cb(retData)
+end)
+
+RegisterNUICallback('uiLoaded', function(_, cb)
+  UI_LOADED = true
+  cb({})
+end)
+
+-- Just a example thread on how to send data to React
+-- on resource startup, otherwise, it could not catch
+-- the event if the React frame is not loaded yet
+CreateThread(function()
+  while not UI_LOADED do
+    Wait(100)
+  end
+
+  SendReactMessage('init', { example = 'Hello world from client' })
 end)
