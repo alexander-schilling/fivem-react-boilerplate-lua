@@ -11,5 +11,5 @@ root.render(
     <VisibilityProvider>
       <App />
     </VisibilityProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
