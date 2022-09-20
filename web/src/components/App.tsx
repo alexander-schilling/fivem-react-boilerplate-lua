@@ -52,14 +52,18 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className='nui-wrapper'>
-      <div className='popup-thing'>
-        <div>
-          <h1>This is the NUI Popup!</h1>
+    <div className='container mx-auto py-10'>
+      <div className='card bg-base-100'>
+        <div className='card-body'>
+          <h1 className='card-title'>This is the NUI Popup!</h1>
           <p>Exit with the escape key</p>
-          <button onClick={handleGetClientData}>Get Client Data</button>
           {clientData && <ReturnClientDataComp data={clientData} />}
           {example && <p>Example: {example.data}</p>}
+          <div className='card-actions justify-end'>
+            <button className='btn btn-primary' onClick={handleGetClientData}>
+              Get Client Data
+            </button>
+          </div>
         </div>
       </div>
     </div>
