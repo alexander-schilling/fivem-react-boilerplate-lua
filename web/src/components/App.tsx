@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import { debugData } from '../utils/debugData';
 import { fetchNui } from '../utils/fetchNui';
+import useAppStates from '../hooks/useAppStates';
 
 // This will set the NUI to visible if we are
 // developing in browser
@@ -35,6 +36,7 @@ interface ReturnData {
 
 const App: React.FC = () => {
   const [clientData, setClientData] = useState<ReturnData | null>(null);
+  const { example } = useAppStates();
 
   const handleGetClientData = () => {
     fetchNui<ReturnData>('getClientData')
@@ -57,6 +59,7 @@ const App: React.FC = () => {
           <p>Exit with the escape key</p>
           <button onClick={handleGetClientData}>Get Client Data</button>
           {clientData && <ReturnClientDataComp data={clientData} />}
+          {example && <p>Example: {example.data}</p>}
         </div>
       </div>
     </div>
