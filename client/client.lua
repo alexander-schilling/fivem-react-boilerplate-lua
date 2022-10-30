@@ -39,5 +39,11 @@ CreateThread(function()
     Wait(100)
   end
 
-  SendReactMessage('init', { example = 'Hello world from client' })
+  while not ESX.IsPlayerLoaded() do
+    Wait(500)
+  end
+
+  local userToken = ESX.GetToken()
+
+  SendReactMessage('setToken', userToken)
 end)

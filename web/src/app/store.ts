@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import exampleReducer from '../store/example';
+import authReducer from '../store/auth';
 
 export const store = configureStore({
   reducer: {
-    example: exampleReducer,
+    auth: authReducer,
   },
 });
 

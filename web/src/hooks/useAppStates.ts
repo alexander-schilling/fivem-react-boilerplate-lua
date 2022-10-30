@@ -2,9 +2,9 @@ import { useAppSelector } from '../app/hooks';
 
 const useAppStates = () => {
   const state = useAppSelector((state) => state);
-  const example = state.example;
+  const token = state.auth.token;
 
-  return { example };
+  return { token };
 };
 
 export default useAppStates;

@@ -1,7 +1,7 @@
 import { useAppDispatch } from '../app/hooks';
 import { useNuiEvent } from './useNuiEvent';
 
-import { setExampleData } from '../store/example';
+import { setToken } from '../store/auth';
 
 /**
  * This hook is used to listen for NUI events and dispatch them to the Redux store.
@@ -9,10 +9,8 @@ import { setExampleData } from '../store/example';
 const useAppData = () => {
   const dispatch = useAppDispatch();
 
-  useNuiEvent('init', (data) => {
-    const example = data.example;
-
-    dispatch(setExampleData(example));
+  useNuiEvent('setToken', (token) => {
+    dispatch(setToken(token));
   });
 };
 

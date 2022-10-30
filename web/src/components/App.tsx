@@ -36,7 +36,7 @@ interface ReturnData {
 
 const App: React.FC = () => {
   const [clientData, setClientData] = useState<ReturnData | null>(null);
-  const { example } = useAppStates();
+  const { token } = useAppStates();
 
   const handleGetClientData = () => {
     fetchNui<ReturnData>('getClientData')
@@ -58,7 +58,7 @@ const App: React.FC = () => {
           <h1 className='card-title'>This is the NUI Popup!</h1>
           <p>Exit with the escape key</p>
           {clientData && <ReturnClientDataComp data={clientData} />}
-          {example && <p>Example: {example.data}</p>}
+          {token && <p>Token: {token}</p>}
           <div className='card-actions justify-end'>
             <button className='btn btn-primary' onClick={handleGetClientData}>
               Get Client Data
