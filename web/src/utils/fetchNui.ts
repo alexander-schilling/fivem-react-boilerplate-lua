@@ -27,8 +27,10 @@ export async function fetchNui<T = unknown>(
 
   if (isEnvBrowser() && mockData) return mockData;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const resourceName = (window as any).GetParentResourceName
-    ? (window as any).GetParentResourceName()
+    ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (window as any).GetParentResourceName()
     : "nui-frame-app";
 
   const resp = await fetch(`https://${resourceName}/${eventName}`, options);
