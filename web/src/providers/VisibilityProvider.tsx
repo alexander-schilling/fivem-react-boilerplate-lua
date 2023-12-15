@@ -4,10 +4,10 @@ import React, {
   useContext,
   useEffect,
   useState,
-} from 'react';
-import { useNuiEvent } from '../hooks/useNuiEvent';
-import { fetchNui } from '../utils/fetchNui';
-import { isEnvBrowser } from '../utils/misc';
+} from "react";
+import { useNuiEvent } from "../hooks/useNuiEvent";
+import { fetchNui } from "../utils/fetchNui";
+import { isEnvBrowser } from "../utils/misc";
 
 const VisibilityCtx = createContext<VisibilityProviderValue | null>(null);
 
@@ -23,7 +23,7 @@ export const VisibilityProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [visible, setVisible] = useState(false);
 
-  useNuiEvent<boolean>('setVisible', setVisible);
+  useNuiEvent<boolean>("setVisible", setVisible);
 
   // Handle pressing escape/backspace
   useEffect(() => {
@@ -31,15 +31,15 @@ export const VisibilityProvider: React.FC<{ children: React.ReactNode }> = ({
     if (!visible) return;
 
     const keyHandler = (e: KeyboardEvent) => {
-      if (['Backspace', 'Escape'].includes(e.code)) {
-        if (!isEnvBrowser()) fetchNui('hideFrame');
+      if (["Backspace", "Escape"].includes(e.code)) {
+        if (!isEnvBrowser()) fetchNui("hideFrame");
         else setVisible(!visible);
       }
     };
 
-    window.addEventListener('keydown', keyHandler);
+    window.addEventListener("keydown", keyHandler);
 
-    return () => window.removeEventListener('keydown', keyHandler);
+    return () => window.removeEventListener("keydown", keyHandler);
   }, [visible]);
 
   return (
@@ -50,7 +50,7 @@ export const VisibilityProvider: React.FC<{ children: React.ReactNode }> = ({
       }}
     >
       <div
-        style={{ visibility: visible ? 'visible' : 'hidden', height: '100%' }}
+        style={{ visibility: visible ? "visible" : "hidden", height: "100%" }}
       >
         {children}
       </div>
@@ -60,5 +60,5 @@ export const VisibilityProvider: React.FC<{ children: React.ReactNode }> = ({
 
 export const useVisibility = () =>
   useContext<VisibilityProviderValue>(
-    VisibilityCtx as Context<VisibilityProviderValue>,
+    VisibilityCtx as Context<VisibilityProviderValue>
   );
