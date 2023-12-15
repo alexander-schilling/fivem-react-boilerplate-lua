@@ -1,13 +1,13 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface ExampleState {
   data: string;
 }
 
 const configSlice = createSlice({
-  name: 'example',
+  name: "example",
   initialState: {
-    data: 'hello world',
+    data: "hello world",
   } as ExampleState,
   reducers: {
     setExampleData: (state: ExampleState, action: PayloadAction<string>) => {

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import useAppData from '../hooks/useAppData';
-import { fetchNui } from '../utils/fetchNui';
+import React, { useState, useEffect } from "react";
+import useAppData from "../hooks/useAppData";
+import { fetchNui } from "../utils/fetchNui";
 
 const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [uiLoaded, setUiLoaded] = useState(false);
@@ -10,7 +10,7 @@ const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   useEffect(() => {
     if (!uiLoaded) {
       setUiLoaded(true);
-      fetchNui<boolean>('uiLoaded').catch(console.error);
+      fetchNui<boolean>("uiLoaded").catch(console.error);
     }
   }, [uiLoaded]);
 

@@ -22,7 +22,7 @@ type NuiHandlerSignature<T> = (data: T) => void;
 
 export const useNuiEvent = <T = unknown>(
   action: string,
-  handler: (data: T) => void,
+  handler: (data: T) => void
 ) => {
   const savedHandler: MutableRefObject<NuiHandlerSignature<T>> = useRef(noop);
 
@@ -42,8 +42,8 @@ export const useNuiEvent = <T = unknown>(
       }
     };
 
-    window.addEventListener('message', eventListener);
+    window.addEventListener("message", eventListener);
     // Remove Event Listener on component cleanup
-    return () => window.removeEventListener('message', eventListener);
+    return () => window.removeEventListener("message", eventListener);
   }, [action]);
 };
