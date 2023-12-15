@@ -58,6 +58,7 @@ export const VisibilityProvider: React.FC<{ children: React.ReactNode }> = ({
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useVisibility = () =>
   useContext<VisibilityProviderValue>(
     VisibilityCtx as Context<VisibilityProviderValue>
