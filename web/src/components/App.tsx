@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
-import { debugData } from "../utils/debugData";
-import { fetchNui } from "../utils/fetchNui";
-import useAppStates from "../hooks/useAppStates";
+import { debugData } from "@/utils/debugData";
+import IndexView from "@/views/Index/IndexView";
 
 // This will set the NUI to visible if we are
 // developing in browser
@@ -13,57 +12,8 @@ debugData([
   },
 ]);
 
-interface ReturnClientDataCompProps {
-  data: unknown;
-}
-
-const ReturnClientDataComp: React.FC<ReturnClientDataCompProps> = ({
-  data,
-}) => (
-  <>
-    <h5>Returned Data:</h5>
-    <pre>
-      <code>{JSON.stringify(data, null)}</code>
-    </pre>
-  </>
-);
-
-interface ReturnData {
-  x: number;
-  y: number;
-  z: number;
-}
-
 const App: React.FC = () => {
-  const [clientData, setClientData] = useState<ReturnData | null>(null);
-  const { token } = useAppStates();
-
-  const handleGetClientData = () => {
-    fetchNui<ReturnData>("getClientData")
-      .then((retData) => {
-        console.log("Got return data from client scripts:");
-        console.dir(retData);
-        setClientData(retData);
-      })
-      .catch((e) => {
-        console.error("Setting mock data due to error", e);
-        setClientData({ x: 500, y: 300, z: 200 });
-      });
-  };
-
-  return (
-    <div className="nui-wrapper">
-      <div className="popup-thing">
-        <div>
-          <h1>This is the NUI Popup!</h1>
-          <p>Exit with the escape key</p>
-          <button onClick={handleGetClientData}>Get Client Data</button>
-          {clientData && <ReturnClientDataComp data={clientData} />}
-          {token && <p>Token: {token}</p>}
-        </div>
-      </div>
-    </div>
-  );
+  return <IndexView />;
 };
 
 export default App;

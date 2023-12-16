@@ -8,6 +8,8 @@ import React, {
 import { useNuiEvent } from "../hooks/useNuiEvent";
 import { fetchNui } from "../utils/fetchNui";
 import { isEnvBrowser } from "../utils/misc";
+import { ScaleFade } from "@chakra-ui/transition";
+import { Box } from "@chakra-ui/layout";
 
 const VisibilityCtx = createContext<VisibilityProviderValue | null>(null);
 
@@ -49,11 +51,11 @@ export const VisibilityProvider: React.FC<{ children: React.ReactNode }> = ({
         setVisible,
       }}
     >
-      <div
-        style={{ visibility: visible ? "visible" : "hidden", height: "100%" }}
-      >
-        {children}
-      </div>
+      <ScaleFade in={visible}>
+        <Box h="100dvh" w="100dvw">
+          {children}
+        </Box>
+      </ScaleFade>
     </VisibilityCtx.Provider>
   );
 };
